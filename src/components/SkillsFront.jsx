@@ -6,6 +6,14 @@ import reactlogo from "./Images/reactlogo.svg";
 import nodelogo from "./Images/nodelogo.png";
 import postmanlogo from "./Images/postmanlogo.png";
 import tailwindlogo from "./Images/tailwindlogo.png";
+import figmalogo from "./Images/figmalogo.png";
+import jiralogo from "./Images/jiralogo.png"; 
+import agilelogo from "./Images/agilelogo.png";
+import sqllogo from "./Images/sqllogo.png";
+import pythonlogo from "./Images/pythonlogo.png";
+import lookerlogo from "./Images/lookerlogo.png";
+
+
 import { motion } from "framer-motion";
 
 const SkillsFront = ({ container, container2 }) => {
@@ -55,7 +63,42 @@ const SkillsFront = ({ container, container2 }) => {
       image: tailwindlogo,
       tooltip: "Tailwind CSS - Utility-first CSS framework for styling UIs",
     },
+  
+    // Product & Collaboration
+    {
+      tool: "Figma",
+      image: figmalogo,
+      tooltip: "Figma - Design tool for wireframes, user flows, and UI collaboration",
+    },
+    {
+      tool: "Jira",
+      image: jiralogo,
+      tooltip: "Jira - Tool for sprint planning, backlog management, and issue tracking",
+    },
+    {
+      tool: "Agile / Scrum",
+      image: agilelogo,
+      tooltip: "Agile & Scrum - Frameworks for iterative development and team collaboration",
+    },
+  
+    // // Data & Analytics
+    {
+      tool: "SQL",
+      image: sqllogo,
+      tooltip: "SQL - Language for querying and analyzing structured data",
+    },
+    {
+      tool: "Python",
+      image: pythonlogo,
+      tooltip: "Python - Used for data analysis, automation, and backend scripting",
+    },
+    {
+      tool: "Looker Studio",
+      image: lookerlogo,
+      tooltip: "Looker Studio - Tool for building dashboards and visualizing product metrics",
+    },
   ];
+  
 
   return (
     <>

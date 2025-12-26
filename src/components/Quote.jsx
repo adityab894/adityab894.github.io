@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const Quote = () => {
   const quoteText =
     "Dedication, perseverance, patience, and focus, are basics to achieve anything ";
-  const author = "___By Aditya B";
+  const author = "  _By Aditya B";
 
   // Create multiple copies for seamless loop
   const quotes = Array(3).fill({ text: quoteText, author });

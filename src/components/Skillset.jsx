@@ -3,24 +3,29 @@ import { motion } from "framer-motion";
 const Skillset = () => {
   const skillsets = [
     {
-      id: "languages",
-      softUsed: ["JavaScript", "Node.js"],
-      title: "Languages",
+      id: "productm",
+      softUsed: ["PRDs", "User Stories", "User Flows", "Figma", "Feature Scoping", "Backlog Management", "Roadmap Planning"],
+      title: "Product Management",
     },
     {
-      id: "database",
-      softUsed: ["MongoDB, SQL"],
-      title: "Database",
+      id: "producta",
+      softUsed: ["Mixpanel, Google Analytics, A/B Testing, Experimentation Design, Cohort & Funnel Analysis"],
+      title: "Product Analytics",
     },
     {
-      id: "tools",
-      softUsed: ["VS Code", "Cursor", "Git", "GitHub", "Postman"],
-      title: "Tools",
+      id: "dad",
+      softUsed: ["Python, SQL, dashboards, data pipelines, React.js, Node.js, REST APIs, BigQuery, Looker Studio"],
+      title: "Data & Development",
     },
     {
-      id: "frameworks",
-      softUsed: ["React.js", "Express.js", "TailwindCSS 4", "Bootstrap"],
-      title: "Frameworks",
+      id: "toolsc",
+      softUsed: ["Jira, Agile/Scrum, Cross-Functional Communication, Stakeholder Alignment, Rapid Execution, Documentation"],
+      title: "Tools & Collaboration",
+    },
+    {
+      id: "ai",
+      softUsed: ["Prompt Engineering", "RAG Workflows", "Multi-Agent Systems", "AI Automation", "LLM's", "AI Agents"  ],
+      title:" AI & LLMs",
     },
     {
       id: "others",
