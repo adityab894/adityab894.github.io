@@ -18,23 +18,74 @@ import Quote from "../components/Quote";
 import { motion, useInView } from "framer-motion";
 import MouseHover from "../components/MouseHover";
 
-// TypingEffect Component
+// TypingEffect Component - re-animates every time text changes
 function TypingEffect({ text = " web developer" }) {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const [displayedText, setDisplayedText] = React.useState("");
+  const [isAnimating, setIsAnimating] = React.useState(false);
+
+  React.useEffect(() => {
+    // Reset and start typing animation when text changes
+    setDisplayedText("");
+    setIsAnimating(true);
+    
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex < text.length) {
+        setDisplayedText(text.slice(0, currentIndex + 1));
+        currentIndex++;
+      } else {
+        setIsAnimating(false);
+        clearInterval(typingInterval);
+      }
+    }, 150); // Adjust speed here (lower = faster)
+
+    return () => clearInterval(typingInterval);
+  }, [text]);
 
   return (
-    <span ref={ref} className="texthilit1">
-      {text.split("").map((letter, index) => (
+    <span className="texthilit1">
+      {displayedText.split("").map((letter, index) => (
         <motion.span
-          key={index}
+          key={`${text}-${index}`}
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.2, delay: 2 + index * 0.3 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9 }}
         >
           {letter}
         </motion.span>
       ))}
+    </span>
+  );
+}
+
+// RotatingRoles Component - cycles through different roles every 4 seconds
+function RotatingRoles() {
+  const roles = [" Software Developer", " Product Management", " UI/UX Designer", "Community Builder"];
+  const [index, setIndex] = React.useState(0);
+  const maxRole = React.useMemo(
+    () => roles.reduce((a, b) => (a.length > b.length ? a : b), roles[0]),
+    [roles]
+  );
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % roles.length);
+    }, 5000); // change every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [roles.length]);
+
+  return (
+    <span
+      className="texthilit1"
+      style={{ display: "inline-block", position: "relative" }}
+    >
+      {/* Invisible placeholder to keep width constant and prevent layout shift */}
+      <span style={{ visibility: "hidden" }}>{maxRole}</span>
+      {/* Actual animated text positioned on top */}
+      <span style={{ position: "absolute", left: 0, top: 0 }}>
+        <TypingEffect key={roles[index]} text={roles[index]} />
+      </span>
     </span>
   );
 }
@@ -76,10 +127,10 @@ const Home = () => {
                   animate="visible"
                   className="head1"
                 >
-                  Hey, I'm Aditya Bisht, an intuitive
+                  Hey, I'm Aditya Bisht, a Software Developer
                 </motion.h1>
                 <div className="head1">
-                  <TypingEffect text=" web developer" />
+                  <RotatingRoles />
                 </div>
                 <motion.h4
                   variants={container(0.7)}
@@ -87,8 +138,7 @@ const Home = () => {
                   animate="visible"
                   className="head4"
                 >
-                  who develops responsive and interactive websites that are
-                  coherent to your needs.
+                  with a product mindset.
                 </motion.h4>
               </div>
               <motion.p
@@ -97,15 +147,14 @@ const Home = () => {
                 animate="visible"
                 className="dark:text-2ndry-2 text-primary-2 allow-select mr-2 ml-6"
               >
-                I specialize in Front End Development and Full Stack (trained in
-                MERN stack development).
+                Experience across product discovery, PRDs, wireframes, roadmaps, and metrics. Technical background in MERN stack enables strong collaboration with engineering teams.
               </motion.p>
               <motion.p
                 variants={container(1.3)}
                 initial="hidden"
                 animate="visible"
               >
-                Let us craft user-friendly websites together!
+                Let’s solve real problems with thoughtful product decisions.
               </motion.p>
             </div>
             <div className="col-span-1">
